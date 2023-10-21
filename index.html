@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--<link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">-->
+  <!-- Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+      rel="stylesheet">
+      
+  <!-- Our custom CSS -->
+  <link rel="stylesheet" href="css/index.css">
+  <title>Memory Game</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>  
+  <script src="./js/lib/anime.min.js"></script>  
+  <script type="module" src="./js/index.js" defer></script>
+</head>
+<body class="">
+    <div id="level-selector-container">
+        <div class="level-selector">
+            <h1 class="title">Star Wars</h1>
+            <h2 class="subtitle">Memory Card Game</h2>
+            <!--<div class="difficult-title">START GAME:</div>-->
+            <ul>
+                <li class="difficult-item" id="easy">
+                    <a href="#">Easy</a>
+                    <div class="difficulty-total-cards">(16 cards)</div>
+                </li>
+                <li class="difficult-item" id="medium">
+                    <a href="#">Medium</a>
+                    <div class="difficulty-total-cards">(24 cards)</div>
+                </li>
+                <li class="difficult-item" id="hard">
+                    <a href="#">Hard</a>
+                    <div class="difficulty-total-cards">(30 cards)</div>
+                </li>
+            </ul>
+        </div>        
+    </div>
+    <div id="game-container">
+        <div class="back-section"><a id="back-button" href="#">Back</a></div>
+        <div id="hud">
+            <div id="movement"><div>MOVEMENT</div> <div id="movement-value">1</div></div>
+            <div id="time">TIME: <span id="time-value">60</span></div>
+            <div id="remaining"><div>REMAINING PAIRS</div><div id="remaining-value">10</div></div>
+        </div>
+        <div id="card-holder" class="">
+            <!-- EMMET 
+                (div#card-$.card>a.card-button#card-button-$[href="#"]>img.back-image[src="assets/imgs/Card-Back.png"]+img.card-image[src="assets/imgs/Card-1.png"])*30
+            -->
+            
+            <div id="card-1" class="card"><a href="#" class="card-button" id="card-button-1"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-2" class="card"><a href="#" class="card-button" id="card-button-2"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-3" class="card"><a href="#" class="card-button" id="card-button-3"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-4" class="card"><a href="#" class="card-button" id="card-button-4"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-5" class="card"><a href="#" class="card-button" id="card-button-5"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-6" class="card"><a href="#" class="card-button" id="card-button-6"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-7" class="card"><a href="#" class="card-button" id="card-button-7"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-8" class="card"><a href="#" class="card-button" id="card-button-8"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-9" class="card"><a href="#" class="card-button" id="card-button-9"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-10" class="card"><a href="#" class="card-button" id="card-button-10"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-11" class="card"><a href="#" class="card-button" id="card-button-11"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-12" class="card"><a href="#" class="card-button" id="card-button-12"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-13" class="card"><a href="#" class="card-button" id="card-button-13"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-14" class="card"><a href="#" class="card-button" id="card-button-14"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-15" class="card"><a href="#" class="card-button" id="card-button-15"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-16" class="card"><a href="#" class="card-button" id="card-button-16"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-17" class="card"><a href="#" class="card-button" id="card-button-17"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-18" class="card"><a href="#" class="card-button" id="card-button-18"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-19" class="card"><a href="#" class="card-button" id="card-button-19"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-20" class="card"><a href="#" class="card-button" id="card-button-20"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-21" class="card"><a href="#" class="card-button" id="card-button-21"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-22" class="card"><a href="#" class="card-button" id="card-button-22"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-23" class="card"><a href="#" class="card-button" id="card-button-23"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-24" class="card"><a href="#" class="card-button" id="card-button-24"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-25" class="card"><a href="#" class="card-button" id="card-button-25"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-26" class="card"><a href="#" class="card-button" id="card-button-26"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-27" class="card"><a href="#" class="card-button" id="card-button-27"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-28" class="card"><a href="#" class="card-button" id="card-button-28"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-29" class="card"><a href="#" class="card-button" id="card-button-29"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-30" class="card"><a href="#" class="card-button" id="card-button-30"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+
+            <!--
+            <div id="card-1" class="card"><a href="#" class="card-button" id="card-button-1"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-1.png" alt="" class="card-image"></a></div>
+            <div id="card-2" class="card"><a href="#" class="card-button" id="card-button-2"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-2.png" alt="" class="card-image"></a></div>
+            <div id="card-3" class="card"><a href="#" class="card-button" id="card-button-3"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-3.png" alt="" class="card-image"></a></div>
+            <div id="card-4" class="card"><a href="#" class="card-button" id="card-button-4"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-4.png" alt="" class="card-image"></a></div>
+            <div id="card-5" class="card"><a href="#" class="card-button" id="card-button-5"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-5.png" alt="" class="card-image"></a></div>
+            <div id="card-6" class="card"><a href="#" class="card-button" id="card-button-6"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-6.png" alt="" class="card-image"></a></div>
+            <div id="card-7" class="card"><a href="#" class="card-button" id="card-button-7"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-7.png" alt="" class="card-image"></a></div>
+            <div id="card-8" class="card"><a href="#" class="card-button" id="card-button-8"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-8.png" alt="" class="card-image"></a></div>
+            <div id="card-9" class="card"><a href="#" class="card-button" id="card-button-9"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-9.png" alt="" class="card-image"></a></div>
+            <div id="card-10" class="card"><a href="#" class="card-button" id="card-button-10"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-10.png" alt="" class="card-image"></a></div>
+            <div id="card-11" class="card"><a href="#" class="card-button" id="card-button-11"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-11.png" alt="" class="card-image"></a></div>
+            <div id="card-12" class="card"><a href="#" class="card-button" id="card-button-12"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-12.png" alt="" class="card-image"></a></div>
+            <div id="card-13" class="card"><a href="#" class="card-button" id="card-button-13"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-13.png" alt="" class="card-image"></a></div>
+            <div id="card-14" class="card"><a href="#" class="card-button" id="card-button-14"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-14.png" alt="" class="card-image"></a></div>
+            <div id="card-15" class="card"><a href="#" class="card-button" id="card-button-15"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-15.png" alt="" class="card-image"></a></div>
+            <div id="card-16" class="card"><a href="#" class="card-button" id="card-button-16"><img src="assets/imgs/Card-Back.png" alt="" class="back-image"><img src="assets/imgs/Card-15.png" alt="" class="card-image"></a></div>
+            -->
+        </div>        
+    </div>
+</body>
+</html>
