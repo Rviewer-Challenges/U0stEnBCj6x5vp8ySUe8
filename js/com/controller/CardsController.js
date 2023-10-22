@@ -1,5 +1,6 @@
 import GlobalEvents from "../../helpers/GlobalEvents.js"
 import Constants from "../../helpers/Constants.js"
+import Card from "../model/Card.js"
 
 class CardsController {
 
@@ -33,14 +34,19 @@ class CardsController {
             const backImage = $(cardButton).find(".back-image")
             const cardImage = $(cardButton).find(".card-image")
 
-            this.cards[cardID] = {
-                id: cardID,
-                type: "not-set",
-                backImage:backImage,
-                cardImage:cardImage,
-                state: Constants.HIDDEN,
-                isLocked:false
-            }
+            const cardData = new Card(
+                {
+                    id: cardID,
+                    type: "not-set",
+                    backImage:backImage,
+                    cardImage:cardImage,
+                    state: Constants.HIDDEN,
+                    isLocked:false,
+                    dom: $(`#card-${(cardID+1)}`)
+                }
+            )
+            
+            this.cards[cardID] = cardData
 
             $(cardButton).on("click", (item)=>{
                 this.onClickCard(cardID)
@@ -77,13 +83,20 @@ class CardsController {
 
         this.array.map((cardTypeID, cardID)=>{
             //console.log(`cardTypeID: ${cardTypeID} cardID:${cardID}`)
+            
+            // New image
             const imageSrc =  `assets/imgs/Card-${cardTypeID}.png`
     
             //console.log(this.cards[cardID])
+            
+            // Change the image for the dom element
             this.cards[cardID].cardImage.attr("src",imageSrc)
-            this.cards[cardID].id = cardID
-            this.cards[cardID].dom = $(`#card-${(cardID+1)}`)
+            
+            // Update type
             this.cards[cardID].type = cardTypeID
+            // this.cards[cardID].id = cardID
+            // this.cards[cardID].dom = $(`#card-${(cardID+1)}`)
+            
             this.cards[cardID].state = Constants.HIDDEN
             this.cards[cardID].isLocked = false
             
@@ -117,13 +130,10 @@ class CardsController {
             return
         }
 
-        // Card type
-        const type = this.cards[cardID].type
-
         // Reveal this card
         this.revealCard(cardID)
 
-        // Next
+        // It's the first card selected or the second one?
         if(this.currentSelection == Constants.FIRST_SELECTION){
             // Store card value selected
             this.selections.firstSelection = cardID
@@ -132,6 +142,7 @@ class CardsController {
             this.currentSelection = Constants.SECOND_SELECTION
         }else if(this.currentSelection == Constants.SECOND_SELECTION){
             // Store card value selected
+
             this.selections.secondSelection = cardID
 
             // Next process the pair and wait 1 second
@@ -172,7 +183,7 @@ class CardsController {
     }
 
     lockCard(cardID){
-        this.cards[cardID]. isLocked = true
+        this.cards[cardID].isLocked = true
     }
 
     clearSelections(){
@@ -186,17 +197,18 @@ class CardsController {
         // Block further interactivity until pair is resolved
         this.isEnabled = false
 
+        // Let's assume they are a missmtch
         let areSameCards = false
+
+        // Evaluate the max time to wait      
         let waitTime = this.waitMissmatchCards
+        //console.log(`first selection type:${this.cards[this.selections.firstSelection].type} second selection type:${this.cards[this.selections.secondSelection].type}`)
         // Compare
         if(this.cards[this.selections.firstSelection].type == this.cards[this.selections.secondSelection].type){
             // We got a pair!
             areSameCards = true
             waitTime = this.waitMatchedCards
         }
-
-        // Evaluate the max time to wait
-        
 
         // Return a promise:
         // resolve -> if pair is a match
@@ -213,25 +225,18 @@ class CardsController {
     }
 
     revealCard(cardID){
-        // Swap z-indexes
-        const backImage = this.cards[cardID].backImage
-        const cardImage = this.cards[cardID].cardImage
-        
         // Set the state of this card as revealed
         this.cards[cardID].state = Constants.REVEALED
-
         
         const intervalTime = 100
         setTimeout(()=>{
-            backImage.css("z-index", this.hideZIndex)
-            cardImage.css("z-index", this.showZIndex)
+            // Swap z-indexes
+            this.cards[cardID].changeZIndex(Card.BACK_CARD, this.hideZIndex)
+            this.cards[cardID].changeZIndex(Card.FRONT_CARD, this.showZIndex)            
         }, intervalTime)
         
-
-        //console.log(`Reveal animation for #card-${cardID}`)
-        
         anime({
-            targets: `#card-${(Number(cardID)+1)}`,
+            targets: this.cards[cardID].domID,
             rotateY: 180,
             duration:this.animationDuration
         });
@@ -239,27 +244,19 @@ class CardsController {
 
     hideCard(cardID){
         
-        // console.log(`HideCard > #card-${(cardID+1)}`)       
-
-        // Swap z-indexes
-        const backImage = this.cards[cardID].backImage
-        const cardImage = this.cards[cardID].cardImage
-
         // Set the state of this card as hidden
         this.cards[cardID].state = Constants.HIDDEN
-        this.showZIndex = this.showZIndex + 1
+        //this.showZIndex = this.showZIndex + 1
 
         const intervalTime = 100
         setTimeout(()=>{
-            backImage.css("z-index", this.showZIndex+1)
-            cardImage.css("z-index", this.hideZIndex)
+            // Swap z-indexes
+            this.cards[cardID].changeZIndex(Card.BACK_CARD, this.showZIndex)
+            this.cards[cardID].changeZIndex(Card.FRONT_CARD, this.hideZIndex)   
         }, intervalTime)
-        
 
-        // this.cards[cardID].dom.css("transform", "rotateY(0deg)")
-        
         anime({
-            targets: `#card-${(Number(cardID)+1)}`,
+            targets: this.cards[cardID].domID,
             rotateY: 0,
             duration:this.animationDuration
         });
