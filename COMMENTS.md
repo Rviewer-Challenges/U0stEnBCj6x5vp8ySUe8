@@ -19,9 +19,10 @@ Once all the dom elements are in place I styled them a little bit, because I wan
 Once I had all the elements setted up I jumped right into the JS part. 
 I wanted to organize everything in classes depending on its purpose, so I created four main controllers: 
 - GameController.js: This class has the purpose of prepare the game based on the difficuly selection, control the "game state" (weather the user is choosing the difficulty or playing), set the score and remaining cards and starts the countdown. It would control if the timer expires and if the user completes the game, go back to the level selector. 
-- CardsController.js: Will need to deal with anything card-related. From taking the reference from each card in the dom to control the cards the user is clicking and checking they match or not. 
+- CardsController.js: Will create a list of Card instances to control it's state and reference to the dom elements. It will handle the user input and determine if two cards match or not. 
 - ViewsController: Will have a reference to the two main divs (the level selector and the game) and will show/hide them depending on the "game state"
 - GridController: The only purpose for this class is to add the appropiate class to the div that contains the cards and hide the unnecessary cards
+- EndGameController: Is responsible to show the end screen with the win/loose warning to the user and two buttons (replay and back)
 Also, I created some "helper" class that act as a glue for the other classes:
 - Constants.js: It's used to store constants used in different classes, that way it's a safe way to reference them. For instance, if we choose the hard difficulty, we just need to assign a desired variable as a Constants.HARD (as oposed to a string like "hard")
 - CountDown.js: It's used to have the countdown logic isolated. The max time would be dynamic as a parameter in a setCountDown method so it could be reused in another proyect

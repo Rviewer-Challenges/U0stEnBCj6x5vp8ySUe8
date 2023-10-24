@@ -4,6 +4,7 @@ import Constants from "../../helpers/Constants.js"
 import CardsController from "./CardsController.js"
 import GridController from "./GridController.js"
 import ViewsController from "./ViewsController.js"
+import EndGameController from "./EndGameController.js"
 
 class GameController {
 
@@ -22,6 +23,9 @@ class GameController {
 
         // Controller for the grid of cards depending on the level
         this.gridController = new GridController()
+
+        // end Game screen controller
+        this.endGameController = new EndGameController()
 
         // Initial State
         this.state = GameController.SELECTING_LEVEL
@@ -54,14 +58,28 @@ class GameController {
         this.globalEvents.subscribe(GlobalEvents.ON_COUNT_DOWN_COMPLETED, ()=>{this.onCountDownCompleted()})
         this.globalEvents.subscribe(GlobalEvents.ON_PAIR_MATCHED, ()=>{this.onPairMatched()})
         this.globalEvents.subscribe(GlobalEvents.ON_PAIR_UNMATCHED, ()=>{this.onPairUnMatched()})
+        this.globalEvents.subscribe(GlobalEvents.ON_REPLAY_CLICKED, ()=>{this.onReplayClicked()})
+        this.globalEvents.subscribe(GlobalEvents.ON_EXIT_CLICKED, ()=>{this.onExitClicked()})
 
         // For testing only
         
-        /*
-        this.maxPlayingTime = 60000
+        //*
+        this.maxPlayingTime = 60
         this.difficultyID = Constants.EASY
+        this.gridController.setDifficulty(this.difficultyID)
         this.changeState(GameController.PLAYING)
+        
         //*/
+    }
+
+    // End Game handlers
+    onReplayClicked(){
+        this.resetGame()
+        this.onDifficultySelected(this.difficultyID)
+    }
+
+    onExitClicked(){
+        this.changeState(GameController.SELECTING_LEVEL)
     }
 
     onDifficultySelected(difficultyID){
@@ -91,7 +109,8 @@ class GameController {
             // Stop the countdown
             this.countDown.cancel()
 
-            // TODO warn the user that it won!
+            // Warn the user that it won!
+            this.endGameController.showEndGame(Constants.WIN)
         }
     }
 
@@ -115,7 +134,8 @@ class GameController {
     }
 
     onCountDownCompleted(){
-        this.changeState(GameController.SELECTING_LEVEL)
+        // Warn the user that it loose!
+        this.endGameController.showEndGame(Constants.LOOSE)
     }
 
     resetGame(){

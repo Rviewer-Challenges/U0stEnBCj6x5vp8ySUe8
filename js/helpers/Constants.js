@@ -14,5 +14,7 @@ Constants.HIDDEN = "HIDDEN";
 Constants.GRID_4_4_CLASS = "grid4by4"; 
 Constants.GRID_4_6_CLASS = "grid4by6"; 
 Constants.GRID_6_5_CLASS = "grid6by5"; 
+Constants.WIN = "WIN"; 
+Constants.LOOSE = "LOOSE"; 
 
 export default Constants;

@@ -107,7 +107,6 @@ class CardsController {
         for(let cardID in this.cards){
             if(this.cards[cardID].state == Constants.REVEALED){
                 // if card is revealed, hide it
-                console.log(`Vamos a ocultar a ${cardID}`)
                 this.hideCard(cardID)
             }
         }
