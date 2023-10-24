@@ -63,7 +63,7 @@ class GameController {
 
         // For testing only
         
-        //*
+        /*
         this.maxPlayingTime = 60
         this.difficultyID = Constants.EASY
         this.gridController.setDifficulty(this.difficultyID)
