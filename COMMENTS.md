@@ -30,3 +30,5 @@ Also, I created some "helper" class that act as a glue for the other classes:
 An example to illustrate the event system: 
 - the class Menu has references to the three different difficulty buttons, and when any of them is clicked that class would emmit an event, like this: this.globalEvents.notify(GlobalEvents.ON_DIFFICULTY_SELECTED, difficulty) 
 - the class GameController listen for that particular event, in this manner: this.globalEvents.subscribe(GlobalEvents.ON_DIFFICULTY_SELECTED, (difficultyID)=>{this.onDifficultySelected(difficultyID)}) and will call it's own method onDifficultySelected passing the value difficultyID that comes with that event
+
+Note: for the card animations I used an external library called animejs, that make it super easy to animate any css property
