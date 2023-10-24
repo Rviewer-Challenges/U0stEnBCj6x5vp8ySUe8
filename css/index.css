@@ -1,0 +1,452 @@
+/* ------------------- */
+/* Custom properties   */
+/* ------------------- */
+
+:root {
+
+    /* colors */
+    --color-1: #fcfcea;
+    --color-2: #f6f9c8;
+    --color-3: #f3f494;
+    --color-4: #ede957;
+    --color-5: #e5d81c;
+    --color-6: #d7c31b;
+    --color-7: #b99a15;
+    --color-8: #947114;
+    --color-9: #7b5918;
+    --color-10: #694a1a;
+    --color-11: #3d280b;
+    
+    /* font-sizes */
+    --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
+    --fs-800: 3.5rem;
+    --fs-700: 1.5rem;
+    --fs-600: 1rem;
+    --fs-500: 1.75rem;
+    --fs-400: 0.9375rem;
+    --fs-300: 1rem;
+    --fs-200: 0.875rem;
+    
+    /* font-families */
+    --ff-serif: "Bellefair", serif;
+    --ff-sans-cond: "Barlow Condensed", sans-serif;
+    --ff-sans-normal: "Barlow", sans-serif;
+
+    padding: 0;
+    color: var(--color-10); 
+}
+
+@media (min-width: 35em) {
+    :root {
+        --fs-800: 5rem;
+        --fs-700: 2.5rem;
+        --fs-600: 1.5rem;
+        --fs-400: 1rem;
+    }
+}
+
+@media (min-width: 45em) {
+    :root {
+        /* font-sizes */
+        --fs-800: 6.25rem;
+        --fs-700: 3.5rem;
+        --fs-600: 2rem;
+        --fs-400: 1.125rem;
+    }
+}
+
+
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+    margin: 0; 
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
+}
+
+/* ------------------- */
+/* Compontents         */
+/* ------------------- */
+.test {
+    border:1px solid red;
+}
+
+/* typography */
+
+.ff-serif { font-family: var(--ff-serif); } 
+.ff-sans-cond { font-family: var(--ff-sans-cond); } 
+.ff-sans-normal { font-family: var(--ff-sans-normal); } 
+
+.letter-spacing-1 { letter-spacing: 4.75px; } 
+.letter-spacing-2 { letter-spacing: 2.7px; } 
+.letter-spacing-3 { letter-spacing: 2.35px; } 
+
+.uppercase { text-transform: uppercase; }
+
+.fs-900 { font-size: var(--fs-900); }
+.fs-800 { font-size: var(--fs-800); }
+.fs-700 { font-size: var(--fs-700); }
+.fs-600 { font-size: var(--fs-600); }
+.fs-500 { font-size: var(--fs-500); }
+.fs-400 { font-size: var(--fs-400); }
+.fs-300 { font-size: var(--fs-300); }
+.fs-200 { font-size: var(--fs-200); }
+
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+    line-height: 1.1;
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* general */
+
+.external-link {
+    color:white;
+    text-decoration: underline;
+}
+
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+
+.d-block {
+    display: block;
+}
+
+.flow > *:where(:not(:first-child)) {
+    margin-top: var(--flow-space, 1rem);
+}
+
+.container {
+    margin-inline: auto;
+    max-width: 80rem;
+}
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    /*background: linear-gradient(var(--color-1), var(--color-2));*/
+    background-image: url("../assets/imgs/background.png");
+}
+
+
+
+/* Memory Game specifics */
+
+/* Difficulty Selector */
+
+
+#level-selector-container{
+    position:absolute;
+    top:0px;
+    left:0px;
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--ff-sans-normal);
+    /*display:none;*/
+}
+
+.level-selector {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: var(--fs-800);
+    text-align: center;
+    min-width: 50vw;
+    color:var(--color-5)
+}
+
+.subtitle {
+    align-self: center;
+    font-size: var(--fs-600);
+    text-align: center; 
+    background-color: var(--color-11);
+    color:var(--color-1);
+    padding:10px 20px;
+    border-radius: 1em;
+    margin-bottom: 2em;
+}
+
+.difficult-title{
+    font-size: var(--fs-600);
+    font-family: var(--ff-sans-cond);
+    text-align: center;
+    color:var(--color-1);
+    margin-bottom:1em;
+}
+
+.level-selector > ul{
+    margin:20px 0 0 0;
+    padding:0;
+}
+
+.difficult-item {
+    list-style: none;
+    margin-bottom:3em;
+    text-align: center;
+}
+
+.difficult-item > span{
+    margin-left:.5em;
+}
+
+.difficult-item > a{
+    text-decoration: none;
+    font-size: var(--fs-600);
+    color:hsl( var(--clr-dark));
+    
+    padding:10px 20px;
+    border-radius: 20px;
+}
+
+.difficulty-total-cards {
+    margin-top: 1em;
+    color:var(--color-3)
+}
+
+#easy a {
+    background-color:var(--color-4);
+}
+
+#medium a {
+    background-color:var(--color-6);
+}
+
+#hard a{
+    background-color:var(--color-7);
+    color:var(--color-1)
+}
+
+
+/* GAME */
+#game-container {
+    position:absolute;
+    top:0px;
+    left:0px;
+    display:grid;
+    place-content: start; 
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--ff-sans-normal);    
+    display: none;
+}
+
+/* HUD */
+#back-button {
+    background-color: var(--color-8);
+    align-self:self-start;
+    border-radius: .5em;
+    padding:10px 20px;      
+    color:var(--color-1);
+    text-decoration: none;
+    transition:background-color .2s linear;
+}
+
+#back-button:hover {
+    background-color: var(--color-5);
+}
+
+.back-section {
+    padding-top:30px;
+    margin-bottom: 30px;
+}
+
+#hud {
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    border-radius: 1em;
+    color: var(--color-1);
+    background-color: var(--color-10);
+    padding:20px 20px;
+    margin-bottom: 30px;
+}
+
+#remaining {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--color-5);
+    padding:20px 20px;
+    color:var(--color-11);
+    border-radius:.5em;
+}
+
+#remaining-value {
+    color:var(--color-10);
+    font-size: var(--fs-500);
+}
+
+#time {
+    font-size: var(--fs-600);
+    align-self: center;
+}
+
+#movement-value {
+    color:var(--color-11);
+    font-size: var(--fs-500);
+}
+
+#movement {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: var(--color-5);
+    padding:20px 20px;
+    color:var(--color-11);
+    border-radius:.5em;
+
+}
+
+/* CARDS */
+
+
+.grid4by4 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+}
+
+.grid4by6 {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.grid6by5 {
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+}
+
+#card-holder {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    grid-gap: 30px;
+}
+
+.card {
+    border-radius: 10px;
+    border: 2px solid yellow;
+    height: 144px;
+}
+
+.card a {
+   text-decoration:none;
+}
+
+.card .card-image{
+    position:relative;
+    /*left:-144px;*/
+    z-index:1;
+    /*float:left;*/
+    margin-left:-140px;
+    border-radius: 10px;
+}
+
+.card .back-image{
+    position:relative;
+    z-index:100;
+    border-radius: 10px;
+}
+
+/* FINAL RESULT */
+#final-result {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    flex-direction: column;
+    position: absolute;
+    background-color: rgba(0, 0, 0, .8);
+    z-index: 100;
+    justify-content: center;
+    text-align: center;
+    align-content: center;
+}
+
+#final-result-container {
+    width: 400px;
+    height: 100%;
+    background-color: var(--color-9);
+    border-radius: .5em;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    padding: 30px 0px;
+}
+
+#result-label{
+    font-size: var(--fs-700);
+    color:var(--color-1);
+    margin-bottom: 20px;
+}
+
+.button-holder{
+    padding: 20px 0px;
+}
+
+.button-holder > a {
+    background-color: var(--color-1);
+    color:var(--color-11);
+    border-radius: .5em;
+    padding:10px 20px;      
+    text-decoration: none;
+    transition:background-color .2s linear;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#exit-button{
+    background-color: var(--color-6);
+}
+
+#replay-button{
+    
+}
